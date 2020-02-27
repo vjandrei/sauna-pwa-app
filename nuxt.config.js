@@ -54,6 +54,9 @@ module.exports = {
     manifest: {
       name: 'Sauna App',
       lang: 'fi'
+    },
+    icon: {
+      /* icon options */
     }
   },
   /*
