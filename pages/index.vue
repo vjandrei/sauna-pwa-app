@@ -1,7 +1,7 @@
 <template>
-  <div class="container text-left">
-    <div>
-      <h1 class="title">
+  <div class="container">
+    <div id="data">
+      <h1>
         sauna-pwa-app
       </h1>
     </div>
@@ -10,7 +10,19 @@
 
 <script>
 export default {
-  components: {}
+  components: {},
+  mounted() {},
+  methods: {
+    async readFromRealtimeDb() {
+      const messageRef = this.$fireDb.ref('temp')
+      try {
+        const snapshot = await messageRef.once('value')
+        alert(snapshot.val().message)
+      } catch (e) {
+        alert(e)
+      }
+    }
+  }
 }
 </script>
 
@@ -20,4 +32,12 @@ export default {
   @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
+
+.container {
+  @apply min-h-screen flex justify-center items-center text-center mx-auto;
+}
+
+#data {
+  @apply border-gray-100 border w-1/2 p-12;
+}
 </style>
