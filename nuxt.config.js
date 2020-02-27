@@ -63,7 +63,7 @@ module.exports = {
   // Options
   oneSignal: {
     init: {
-      appId: 'YOUR_APP_ID',
+      appId: process.env.YOUR_APP_ID, 
       allowLocalhostAsSecureOrigin: true,
       welcomeNotification: {
           disable: true
