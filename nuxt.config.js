@@ -50,6 +50,12 @@ module.exports = {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {},
+  pwa: {
+    manifest: {
+      name: 'Sauna App',
+      lang: 'fi'
+    }
+  },
   /*
    ** Build configuration
    */
