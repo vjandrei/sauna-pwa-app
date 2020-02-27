@@ -43,6 +43,7 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/onesignal',
     '@nuxtjs/pwa'
   ],
   /*
@@ -57,6 +58,16 @@ module.exports = {
     },
     icon: {
       /* icon options */
+    }
+  },
+  // Options
+  oneSignal: {
+    init: {
+      appId: 'YOUR_APP_ID',
+      allowLocalhostAsSecureOrigin: true,
+      welcomeNotification: {
+          disable: true
+      }
     }
   },
   /*
