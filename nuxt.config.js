@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 module.exports = {
   mode: 'spa',
   /*
@@ -35,7 +37,9 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    // Doc: https://github.com/nuxt-community/dotenv-module#readme
+    '@nuxtjs/dotenv'
   ],
   /*
    ** Nuxt.js modules
@@ -44,7 +48,8 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/onesignal',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/dotenv'
   ],
   /*
    ** Axios module configuration
@@ -63,10 +68,10 @@ module.exports = {
   // Options
   oneSignal: {
     init: {
-      appId: process.env.YOUR_APP_ID, 
+      appId: process.env.APP_ID,
       allowLocalhostAsSecureOrigin: true,
       welcomeNotification: {
-          disable: true
+        disable: true
       }
     }
   },
