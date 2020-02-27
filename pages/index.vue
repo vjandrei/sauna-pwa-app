@@ -20,4 +20,7 @@ export default {
   @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
+.container {
+  @apply min-h-screen flex justify-center items-center text-center mx-auto;
+}
 </style>
