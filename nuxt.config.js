@@ -50,7 +50,7 @@ module.exports = {
     '@nuxtjs/onesignal',
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
-    '@nuxtjs/firebase',
+    '@nuxtjs/firebase'
   ],
   /*
    ** Axios module configuration
@@ -90,7 +90,7 @@ module.exports = {
       firestore: true,
       realtimeDb: true
     }
-  }
+  },
   /*
    ** Build configuration
    */
