@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div id="data">
-      <h1>
-        sauna-pwa-app
-      </h1>
+      <h1>sauna-pwa-app</h1>
+      <span class="block">Lämpötila: {{ saunaData.temp }} °C</span>
+      <span class="block">Kosteus: {{ saunaData.humidity }} %</span>
     </div>
   </div>
 </template>
@@ -11,18 +11,19 @@
 <script>
 export default {
   components: {},
-  mounted() {},
-  methods: {
-    async readFromRealtimeDb() {
-      const messageRef = this.$fireDb.ref('temp')
-      try {
-        const snapshot = await messageRef.once('value')
-        alert(snapshot.val().message)
-      } catch (e) {
-        alert(e)
-      }
+  data: () => {
+    return {
+      saunaData: []
     }
-  }
+  },
+  mounted() {
+    fetch('https://mokki-sauna.firebaseio.com/data.json').then((response) => {
+      response.json().then((saunaData) => {
+        this.saunaData = saunaData
+      })
+    })
+  },
+  methods: {}
 }
 </script>
 
