@@ -4,11 +4,9 @@
       <h1>sauna-pwa-app</h1>
       <span class="block">Lämpötila: -- °C</span>
       <span class="block">Kosteus: -- %</span>
+      {{ saunaData }}
+      <p v-for="sauna of saunaData" :key="sauna.id">{{ sauna }}</p>
     </div>
-    {{ todos }}
-    <li v-for="todo in todos" :key="todo.id">
-      {{ todo.id }}
-    </li>
   </div>
 </template>
 
@@ -25,24 +23,23 @@ const config = {
   projectId: process.env.FIREBASE_PROJECT_ID
 }
 
-export const db = firebase.initializeApp(config).database()
+const db = firebase.initializeApp(config).database()
 
 export default {
   components: {},
   data: () => {
     return {
-      saunaData: [],
-      todos: []
+      saunaData: {}
     }
   },
-  props: {
-    database: {}
-  },
   firebase: {
-    database: db.ref('todos').push()
-  },
-  mounted() {},
-  methods: {}
+    saunaData: {
+      source: db.ref('data'),
+      cancelCallback(err) {
+        console.error(err)
+      }
+    }
+  }
 }
 </script>
 
