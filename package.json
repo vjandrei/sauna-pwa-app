@@ -20,7 +20,7 @@
     "express": "^4.16.4",
     "firebase": "^7.9.2",
     "nuxt": "^2.0.0",
-    "vuexfire": "^3.2.1"
+    "vuefire": "^2.2.1"
   },
   "devDependencies": {
     "nodemon": "^1.18.9",
