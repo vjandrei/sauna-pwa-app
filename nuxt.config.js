@@ -83,5 +83,8 @@ module.exports = {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+  env: {
+    apiKey: process.env.FIREBASE_APP_KEY
   }
 }

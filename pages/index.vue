@@ -2,44 +2,34 @@
   <div class="container">
     <div id="data">
       <h1>sauna-pwa-app</h1>
-      <span class="block">Lämpötila: -- °C</span>
-      <span class="block">Kosteus: -- %</span>
-      {{ saunaData }}
-      <p v-for="sauna of saunaData" :key="sauna.id">{{ sauna }}</p>
+      <span class="block">Lämpötila: {{ saunaData.temp }} °C</span>
+      <span class="block">Kosteus: {{ saunaData.humidity }} %</span>
     </div>
   </div>
 </template>
 
 <script>
-import firebase from 'firebase/app'
-import 'firebase/database'
-
-const config = {
-  apiKey: process.env.FIREBASE_APP_KEY,
-  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-  databaseURL: process.env.FIREBASE_DATABASE_URL,
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-  projectId: process.env.FIREBASE_PROJECT_ID
-}
-
-const db = firebase.initializeApp(config).database()
-
+import { DB } from '@/services/fireinit.js'
 export default {
   components: {},
-  data: () => {
+  asyncData({ store }) {
     return {
-      saunaData: {}
+      fireData: DB.ref(`data`)
     }
   },
-  firebase: {
-    saunaData: {
-      source: db.ref('data'),
-      cancelCallback(err) {
-        console.error(err)
-      }
+  data: () => {
+    return {
+      saunaData: {},
+      items: {}
     }
-  }
+  },
+  created() {
+    const vm = this
+    this.fireData.on('value', function(snapshot) {
+      vm.saunaData = snapshot.val()
+    })
+  },
+  methods: {}
 }
 </script>
 
