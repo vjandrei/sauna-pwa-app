@@ -4,6 +4,17 @@
       <h1>sauna-pwa-app</h1>
       <span class="block">Lämpötila: {{ saunaData.temp }} °C</span>
       <span class="block">Kosteus: {{ saunaData.humidity }} %</span>
+      <svg class="progress-ring" height="220" width="220">
+        <circle
+          class="progress-ring__circle"
+          stroke-width="10"
+          stroke="#EBEDF8"
+          fill="transparent"
+          r="100"
+          cx="110"
+          cy="110"
+        />
+      </svg>
     </div>
   </div>
 </template>
@@ -19,14 +30,13 @@ export default {
   },
   data: () => {
     return {
-      saunaData: {},
-      items: {}
+      saunaData: {}
     }
   },
+  // vm = viewmodel
   created() {
-    const vm = this
-    this.fireData.on('value', function(snapshot) {
-      vm.saunaData = snapshot.val()
+    this.fireData.on('value', (snapshot) => {
+      this.saunaData = snapshot.val()
     })
   },
   methods: {}
@@ -45,6 +55,15 @@ export default {
 }
 
 #data {
-  @apply border-gray-100 border w-1/2 p-12;
+  @apply border-gray-100 border w-1/2 p-12 flex flex-col justify-center items-center;
+}
+
+svg {
+  @apply m-3;
+}
+
+.progress-ring__circle {
+  --percent: 100;
+  stroke-dashoffset: calc(220 - (var(--percent) * 220 / 100));
 }
 </style>
